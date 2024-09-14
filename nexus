@@ -1,0 +1,15 @@
+# After docker installation
+
+docker run -d --name nexus -p 8081:8081 sonatype/nexus3:latest
+
+
+
+
+#to get password
+
+docker ps
+
+docker exec -it <container_ID> /bin/bash
+cd sonatype-work/nexus3
+cat admin.password
+exit
