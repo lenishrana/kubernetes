@@ -14,3 +14,9 @@ sudo apt-get update
 sudo apt-get install jenkins
 
 sudo chmod 666 /var/run/docker.sock
+
+sudo systemctl enable jenkins
+
+sudo systemctl start jenkins
+
+sudo systemctl status jenkins
