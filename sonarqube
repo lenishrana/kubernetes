@@ -1,1 +1,8 @@
 docker run -d --name sonar -p 9000:9000 sonarqube:lts-community
+
+
+#after  restarting instacne run the command below to start sonarqube 
+docker run -d --name sonarqube -e SONAR_ES_BOOTSTRAP_CHECKS_DISABLE=true -p 9000:9000 sonarqube:latest
+
+#if acess issue comes follow below command 
+sudo chmod 666 /var/run/docker.sock
