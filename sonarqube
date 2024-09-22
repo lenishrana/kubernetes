@@ -6,3 +6,13 @@ docker run -d --name sonarqube -e SONAR_ES_BOOTSTRAP_CHECKS_DISABLE=true -p 9000
 
 #if acess issue comes follow below command 
 sudo chmod 666 /var/run/docker.sock
+
+
+
+#pipeline syntax make changes accordingly 
+
+stage("Sonarqube Analysis "){
+            steps{
+                withSonarQubeEnv('sonar-scanner') {
+                    sh ''' $SCANNER_HOME/bin/sonar-scanner -Dsonar.url=13.233.64.168:9000/ -Dsonar.login=squ_5d065dd6b0f3035b79c20d0d66d05fff134a4ca1 -Dsonar.projectName=Netflix \
+                    -Dsonar.projectKey=Netflix '''
