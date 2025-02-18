@@ -1,0 +1,24 @@
+resource "aws_key_pair" "TF-key" {
+  key_name   = "TF_key"
+  public_key = tls_private_key.rsa.public_key_openssh
+}
+resource "tls_private_key" "rsa" {
+  algorithm = "RSA"
+  rsa_bits  = 4096
+}
+resource "local_file" "TF-key" {
+  content  = "tls_private_key.rsa.private_key_pem"
+  filename = "TF-key"
+}
+
+resource "aws_instance" "webApp" {
+  ami           = "ami-00bb6a80f01f03502"
+  instance_type = "t2.micro"
+  subnet_id = aws_subnet.public.id
+  key_name = "TF-key"
+
+
+  tags = {
+    Name = "WebApp"
+  }
+}
